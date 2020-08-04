@@ -1,0 +1,79 @@
+<div class="content-container">
+  <div class="content-area">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Notícias</h2>
+
+        <form class="compact">
+          <section class="form-block">
+
+            <div class="form-group">
+              <label>Título: </label>
+              <input [(ngModel)]="noticia.titulo" #titulo="ngModel" name="titulo" type="text" size="45">
+            </div>
+
+            <div class="form-group">
+              <label>Autor: </label>
+              <input [(ngModel)]="noticia.autor" #autor="ngModel" name="autor" type="text" size="45">
+            </div>
+
+            <div class="form-group">
+              <label>Data: </label>
+              <input [(ngModel)]="noticia.data" #data="ngModel" name="data" type="text" size="45">
+            </div>
+
+            <div class="form-group">
+              <label>Conteúdo: </label>
+              <input [(ngModel)]="noticia.conteudo" #conteudo="ngModel" name="conteudo" type="text" size="45">
+            </div>
+
+
+            <button type="button" class="btn btn-success" [(disabled)]="disableUpdate" (click)="update()">Salvar</button>
+            <button type="button" class="btn btn-primary" [(disabled)]="disableAdd"(click)="add()">Adicionar</button>
+            <button type="button" class="btn btn-warning" (click)="clear()">Cancelar</button>
+          </section>
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <clr-datagrid>
+          <clr-dg-placeholder>Não foi possível encontrar Noticias!</clr-dg-placeholder>
+          <clr-dg-column>Id</clr-dg-column>
+          <clr-dg-column>Título</clr-dg-column>
+          <clr-dg-column>Autor</clr-dg-column>
+          <clr-dg-column>Data</clr-dg-column>
+          <clr-dg-column>Conteúdo</clr-dg-column>
+          <clr-dg-column>Opções</clr-dg-column>
+
+          <clr-dg-row *clrDgItems="let not of noticias">
+            <clr-dg-cell>{{not.id}}</clr-dg-cell>
+            <clr-dg-cell>{{not.titulo}}</clr-dg-cell>
+            <clr-dg-cell>{{not.autor}}</clr-dg-cell>
+            <clr-dg-cell>{{not.data}}</clr-dg-cell>
+            <clr-dg-cell>{{not.conteudo}}</clr-dg-cell>
+            <clr-dg-cell>
+              <button type="button" class="btn btn-icon btn-warning-outline btn-sm" (click)="edit(not)">
+                <clr-icon shape="pencil"></clr-icon>
+              </button>
+              <button type="button" class="btn btn-icon btn-danger btn-sm" (click)="remove(not.id)">
+                <clr-icon shape="trash"></clr-icon>
+              </button>
+            </clr-dg-cell>
+          </clr-dg-row>
+
+        </clr-datagrid>
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
